@@ -425,6 +425,10 @@ public class VerticalPageLayout : DynamicLayout
                 oldPos.y = Mathf.Max(0, contentHeight - viewportHeight);
                 SetContentPosition(oldPos);
             }
+            else if (contentTopY < -0.2)
+            {
+                SetContentPosition(Vector2.zero);
+            }
         }
 
         CheckAutoDrag();

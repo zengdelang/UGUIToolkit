@@ -309,11 +309,15 @@ public class HorizontalGridLayout : DynamicLayout
             var contentLeftX = m_ScrollView.content.anchoredPosition.x;
             var viewportWidth = m_ScrollView.viewport.rect.width;
             var viewportRightX = viewportWidth - contentLeftX;
-            if (viewportRightX > contentWidth || contentLeftX > 0)
+            if (viewportRightX > contentWidth)
             {
                 var oldPos = m_ScrollView.content.anchoredPosition;
                 oldPos.x = Mathf.Min(0, viewportWidth - contentWidth);
                 SetContentPosition(oldPos);
+            }
+            else if (contentLeftX > 0.2)
+            {
+                SetContentPosition(Vector2.zero);
             }
         }
 

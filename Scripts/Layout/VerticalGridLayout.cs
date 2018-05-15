@@ -310,11 +310,15 @@ public class VerticalGridLayout : DynamicLayout
             var contentTopY = m_ScrollView.content.anchoredPosition.y;
             var viewportHeight = m_ScrollView.viewport.rect.height;
             var viewportBottomY = contentTopY + viewportHeight;
-            if (viewportBottomY > contentHeight || contentTopY < 0)
+            if (viewportBottomY > contentHeight)
             {
                 var oldPos = m_ScrollView.content.anchoredPosition;
                 oldPos.y = Mathf.Max(0, contentHeight - viewportHeight);
                 SetContentPosition(oldPos);
+            }
+            else if (contentTopY < -0.2)
+            {
+                SetContentPosition(Vector2.zero);
             }
         }
 
